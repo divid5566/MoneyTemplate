@@ -15,15 +15,18 @@ namespace MoneyTemplate.Controllers
         }
         public ActionResult ListDetail()
         {
+            var book = new MoneyModel().AccountBook.ToList();
+
+            
             var List = new List<note>();
-            for (var i = 0; i < 200; i++)
+            foreach (var item in book)
             {
                 var ListData = new note
                 {
-                    category = i % 2,
-                    noteday = DateTime.Now.AddDays(i).AddHours(i).AddMinutes(i),
-                    description = "預設備註",
-                    noteprice= 10000
+                    category = item.Categoryyy,
+                    noteday = item.Dateee,
+                    description = item.Remarkkk.Length > 10 ? item.Remarkkk.Substring(0,10): item.Remarkkk,
+                    noteprice= item.Amounttt
                 };
                 List.Add(ListData);
             }
